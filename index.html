@@ -1,94 +1,124 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Commit</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #8aff70;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            margin-bottom: 10px;
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 20px;
-        }
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 40px);
-            gap: 5px;
-            justify-content: center;
-            margin-top: 20px;
-            background-color: #222;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .day {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            background-color: white;
-            color: black;
-            border-radius: 5px;
-        }
-        .level-1 { background-color: #c3fdaa; }
-        .level-2 { background-color: #90ee90; }
-        .level-3 { background-color: #32cd32; }
-        .level-4 { background-color: #228b22; }
-        .charts {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 30px;
-        }
-        .chart-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: #fff;
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Habit Commit</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #8aff70;
+      text-align: center;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(30, 12px); /* 30週分（例） */
+      grid-auto-rows: 12px;
+      gap: 3px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .day {
+      width: 12px;
+      height: 12px;
+      background-color: #161b22;
+      border-radius: 2px;
+    }
+
+    .level-1 { background-color: #9be9a8; }
+    .level-2 { background-color: #40c463; }
+    .level-3 { background-color: #30a14e; }
+    .level-4 { background-color: #216e39; }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      top: -35px;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 10px;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .legend {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .legend span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 2px;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Habit Commit</h1>
-    
-    <div class="stats">
-        <div>Total: <strong>100</strong></div>
-        <div>Day: <strong>60</strong></div>
-        <div>Time: <strong>24</strong></div>
-    </div>
+  <h1>Habit Commit</h1>
 
-    <div class="calendar">
-        <div class="day"></div><div class="day"></div><div class="day level-3">3</div>
-        <div class="day level-2">4</div><div class="day level-1">5</div><div class="day level-1">6</div><div class="day">7</div>
-        
-        <div class="day">8</div><div class="day level-1">9</div><div class="day">10</div>
-        <div class="day">11</div><div class="day level-2">12</div><div class="day">13</div><div class="day">14</div>
+  <div class="calendar">
+    <div class="day"></div>
+    <div class="day level-1"></div>
+    <div class="day level-2"></div>
+    <div class="day level-3"></div>
+    <div class="day level-1"></div>
+    <div class="day"></div>
+    <div class="day level-2"></div>
+    <div class="day"></div>
+    <div class="day level-1"></div>
+    <div class="day level-2"></div>
+    <div class="day level-3"></div>
+    <div class="day level-1"></div>
+    <div class="day"></div>
+    <div class="day level-2"></div>
 
-        <div class="day level-2">15</div><div class="day">16</div><div class="day level-3">17</div>
-        <div class="day">18</div><div class="day level-2">19</div><div class="day">20</div><div class="day">21</div>
+    <div class="day level-1"></div>
+    <div class="day level-3"></div>
+    <div class="day"></div>
+    <div class="day level-1"></div>
+    <div class="day level-4"></div>
+    <div class="day level-2"></div>
+    <div class="day"></div>
 
-        <div class="day">22</div><div class="day level-2">23</div><div class="day">24</div>
-        <div class="day level-3">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
-        
-        <div class="day level-1">29</div><div class="day level-3">3</div><div class="day level-3">3</div>
-    </div>
+  </div>
 
-    <div class="charts">
-        <div class="chart-placeholder"></div>
-        <div class="chart-placeholder"></div>
-    </div>
+  <div class="legend">
+    Less
+    <span style="background-color: #161b22;"></span>
+    <span style="background-color: #9be9a8;"></span>
+    <span style="background-color: #40c463;"></span>
+    <span style="background-color: #30a14e;"></span>
+    <span style="background-color: #216e39;"></span>
+    More
+  </div>
 
 </body>
 </html>
